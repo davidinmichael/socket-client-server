@@ -11,7 +11,7 @@ def receive_message(client_socket):
         client_message = client_socket.recv(1024).decode()
         print("Client: ", client_message)
 
-HOST = ""
+HOST = "192.168.68.60"
 PORT = 9999
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
