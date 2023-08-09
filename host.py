@@ -1,25 +1,31 @@
 
 import socket
+import threading
+
+def handle_client(client_socket):
+    message = "Welcome to i-Light Server"
+    client_socket.sendall(message).encode()
+
+    while True:
+        try:
+            client_message = client_socket.recv(1024).decode()
+            print("Client: ", client_message)
+
+            server_response = input("Enter Message: ")
+            client_socket.sendall(server_response).encode()
+        except:
+            break
+    client_socket.close()
 
 HOST = ""
 PORT = 9999
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST, PORT))
 s.listen()
+print("Waiting for connection...")
+
 while True:
     conn, addr = s.accept()
-    with conn:
-        print(f"Connection from {addr} accepted")
-        welcome = "Welcome to i-Light Server"
-        conn.sendall(welcome.encode())
-        while True:
-            cmd = input("Enter message: ")
-            if cmd == "quit" or cmd == "exit":
-                conn.close()
-                s.close()
-            else:
-                conn.sendall(cmd.encode())
-                client_response = conn.recv(1024).decode()
-                print("Client: ", client_response)
-                # client_response = str(conn.recv(1024), "utf-8")
-                # print(client_response, end="")
+    print(f"Connect from {addr} successful")
+    thread = threading.Thread(target=handle_client, args=(conn,)) # create a
+    thread.start()
