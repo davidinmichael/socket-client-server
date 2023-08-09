@@ -9,7 +9,7 @@ def receive_message(client_socket):
             print("Server: ", server_response)
 
             data=input("Enter message to send: ")
-            s.sendall(data.encode())
+            client_socket.sendall(data.encode())
         except:
             break
     client_socket.close()
