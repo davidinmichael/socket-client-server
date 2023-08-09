@@ -6,4 +6,6 @@ PORT = 9999
 s.connect((HOST, PORT))
 while True:
     welcome = s.recv(1024)
+    print("Server: ", welcome)
     data=input("Enter message to send: ")
+    s.sendall(data.encode())
