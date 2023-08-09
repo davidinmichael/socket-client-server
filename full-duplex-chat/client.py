@@ -9,7 +9,7 @@ def send_message(client_socket):
 def receive_message(client_socket):
     while True:
         client_message = client_socket.recv(1024).decode()
-        print("Client: ", client_message)
+        print("\nServer: ", client_message)
 
 HOST = "192.168.68.60"
 PORT = 9999

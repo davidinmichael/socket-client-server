@@ -13,7 +13,7 @@ def send_message(client_socket):
 def receive_message(client_socket):
     while True:
         client_message = client_socket.recv(1024).decode()
-        print("Client: ", client_message)
+        print("\nClient: ", client_message)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print('Socket created')
