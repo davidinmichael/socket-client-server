@@ -4,7 +4,7 @@ import threading
 
 def handle_client(client_socket):
     message = "Welcome to i-Light Server"
-    client_socket.sendall(message).encode()
+    client_socket.sendall(message.encode())
 
     while True:
         try:
@@ -12,7 +12,7 @@ def handle_client(client_socket):
             print("Client: ", client_message)
 
             server_response = input("Enter Message: ")
-            client_socket.sendall(server_response).encode()
+            client_socket.sendall(server_response.encode())
         except:
             break
     client_socket.close()
