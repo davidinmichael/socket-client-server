@@ -7,6 +7,9 @@ def receive_message(client_socket):
         try:
             server_response = client_socket.recv(1024).decode()
             print("Server: ", server_response)
+
+            data=input("Enter message to send: ")
+            s.sendall(data.encode())
         except:
             break
     client_socket.close()
@@ -20,6 +23,6 @@ print('Connected')
 receive_thread = threading.Thread(target=receive_message, args=(s,))
 receive_thread.start()
 
-while True:
-    data=input("Enter message to send: ")
-    s.sendall(data.encode())
+# while True:
+#     data=input("Enter message to send: ")
+#     s.sendall(data.encode())
