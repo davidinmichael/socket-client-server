@@ -9,7 +9,7 @@ def handle_client(client_socket):
     while True:
         try:
             client_message = client_socket.recv(1024).decode()
-            print("Client: ", client_message, end="")
+            print("Client: ", client_message)
 
             server_response = input("Enter Message: ")
             client_socket.sendall(server_response.encode())
