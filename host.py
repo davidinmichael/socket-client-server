@@ -9,7 +9,7 @@ def handle_client(client_socket):
     while True:
         try:
             client_message = client_socket.recv(1024).decode()
-            print("Client: ", client_message)
+            print("Client: ", client_message, end="")
 
             server_response = input("Enter Message: ")
             client_socket.sendall(server_response.encode())
@@ -26,6 +26,6 @@ print("Waiting for connection...")
 
 while True:
     conn, addr = s.accept()
-    print(f"Connect from {addr} successful")
+    print(f"Connection from {addr} successful")
     thread = threading.Thread(target=handle_client, args=(conn,)) # create a
     thread.start()

@@ -6,7 +6,7 @@ def receive_message(client_socket):
     while True:
         try:
             server_response = client_socket.recv(1024).decode()
-            print("Server: ", server_response)
+            print("Server: ", server_response, end="")
         except:
             break
     client_socket.close()
