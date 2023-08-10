@@ -4,11 +4,18 @@ import threading
 
 HOST = ""
 PORT = 9999
+client_sockets = []
 
-def send_message(client_socket):
+def handle_client(client_socket):
+    client_sockets.append(client_socket)
+    message = "Welcome to i-Light Server"
+    client_socket.sendall(message.encode())
+
+def send_message(client_sockets):
     while True:
-        message = input("Enter Message: ")
-        client_socket.sendall(message.encode())
+        for sock in client_sockets:
+            message = input("Enter Message: ")
+            sock.sendall(message.encode())
 
 def receive_message(client_socket):
     while True:
@@ -25,6 +32,7 @@ print ('Listening on port', PORT )
 while True:
     conn, addr = s.accept()
     print(f"Connection to {addr} Established Successfully")
+    handle_client()
     send_thread = threading.Thread(target=send_message, args=(conn,))
     recv_thread = threading.Thread(target=receive_message, args=(conn,))
     send_thread.start()
