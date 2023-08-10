@@ -5,11 +5,12 @@ HOST = ""
 PORT = 9999
 clients = []
 usernames = []
+
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 print("Server started")
 server_socket.listen(5)
-print(f"Server is listen on {HOST}, Port {PORT}")
+print(f"Server is listening on {HOST}, Port {PORT}")
 
 def broadcast(message):
     for client in clients:
@@ -42,7 +43,7 @@ def receive():
 
         print(f"{username} just connected")
         broadcast(f"{username} joined the chat".encode())
-        client.sendall("You can send and receive messages in the group chat".encode())
+        client.sendall("You can now send and receive messages in the group chat".encode())
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
