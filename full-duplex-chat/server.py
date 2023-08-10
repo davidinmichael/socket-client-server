@@ -1,4 +1,4 @@
-from concurrent.futures import thread
+
 import socket
 import threading
 
@@ -13,8 +13,8 @@ def handle_client(client_socket):
 
 def send_message(client_sockets):
     while True:
+        message = input("Enter Message: ")
         for sock in client_sockets:
-            message = input("Enter Message: ")
             sock.sendall(message.encode())
 
 def receive_message(client_socket):
