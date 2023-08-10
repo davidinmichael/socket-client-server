@@ -33,7 +33,7 @@ while True:
     conn, addr = s.accept()
     print(f"Connection to {addr} Established Successfully")
     handle_client(conn)
-    send_thread = threading.Thread(target=send_message, args=(conn,))
+    send_thread = threading.Thread(target=send_message, args=(client_sockets,))
     recv_thread = threading.Thread(target=receive_message, args=(conn,))
     send_thread.start()
     recv_thread.start()
