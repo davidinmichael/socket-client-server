@@ -23,8 +23,8 @@ def receive():
 
 def send():
     while True:
-        # message = f"{username}: {input("")}"
-        message = input(f"{username}: ")
+        message = f"{username}: {input('')}"
+        # message = input(f"{username}: ")
         s.sendall(message.encode())
 
 recv_thread = threading.Thread(target=receive)

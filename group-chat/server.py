@@ -13,13 +13,13 @@ print(f"Server is listen on {HOST}, Port {PORT}")
 
 def broadcast(message):
     for client in clients:
-        client.sendall(message.encode())
+        client.sendall(message)
 
 def handle(client):
     while True:
         try:
             message = client.recv(1024).decode()
-            broadcast(message)
+            broadcast(message.encode())
         except:
             index = clients.index(client)
             clients.remove(client)
